@@ -35,6 +35,12 @@ class ViewController: UIViewController {
         
         button.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
     }
+    
+    @IBAction func imageButtonClicked(sender: UIButton) {
+        let image = UIImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        self.presentViewController(controller, animated: true, completion:nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,7 +50,7 @@ class ViewController: UIViewController {
     func incrementCount() {
         self.count++
         self.label.text = "\(self.count)"
-        
+        // Change the background color
         self.view.backgroundColor = UIColor.redColor()
     }
 
