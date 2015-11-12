@@ -42,6 +42,18 @@ class ViewController: UIViewController {
         self.presentViewController(controller, animated: true, completion:nil)
     }
 
+    @IBAction func showAlertButtonClicker(sender: UIButton) {
+        let controller = UIAlertController()
+        let okAction = UIAlertAction (title: "Ok", style: UIAlertActionStyle.Default){ action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        let cancelAction = UIAlertAction (title: "Cancel", style: UIAlertActionStyle.Default){ action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        controller.addAction(okAction)
+        controller.addAction(cancelAction)
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

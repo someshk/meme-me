@@ -25,11 +25,21 @@
                                     <action selector="imageButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tx9-Y2-91J"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZN-hU-cUn">
+                                <rect key="frame" x="197" y="422" width="167" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Show Alert Message"/>
+                                <connections>
+                                    <action selector="showAlertButtonClicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K50-Mw-fky"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="YZN-hU-cUn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WxD-Gu-F8c"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="axV-JW-Eg7" secondAttribute="bottom" constant="231" id="cO3-uT-OYV"/>
+                            <constraint firstItem="YZN-hU-cUn" firstAttribute="top" secondItem="axV-JW-Eg7" secondAttribute="bottom" constant="47" id="jQ9-0a-6ar"/>
                             <constraint firstItem="axV-JW-Eg7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="quX-ej-Zfv"/>
                         </constraints>
                     </view>
