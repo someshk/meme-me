@@ -22,12 +22,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     }
     
-    @IBAction func pickAnImage(sender: UIBarButtonItem) {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Subscribe to keyboard notifications, to allow the view to raise when necessary
+        self.subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Unsubscribe keyboard notifications
+        self.unsubscribeFromKeyboardNotifications()
+    }
+    
+    
+    @IBAction func cameraButtonClicked(sender: UIBarButtonItem) {
         let controller = UIImagePickerController()
-        controller.sourceType = UIImagePickerControllerSourceType.Camera
+//        controller.sourceType = UIImagePickerControllerSourceType.Camera
         controller.delegate = self
         self.presentViewController(controller, animated: true, completion:nil)
     }
@@ -54,6 +69,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePicker.delegate = self
         self.presentViewController(imagePicker, animated: true, completion:nil)
+    }
+    
+    
+    func keyBoardWillShow(notification: NSNotification) {
+        self.view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    
+    func getKeyboardHeight(notification: NSNotification) ->CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.CGRectValue().height
+    }
+    
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardWillShow", name: UIKeyboardDidShowNotification, object: nil)
+    }
+    
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
 }
 
