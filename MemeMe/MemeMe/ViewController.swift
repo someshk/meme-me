@@ -8,10 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate,
+                UINavigationControllerDelegate {
 
     var count = 0
     var label:UILabel!
+    
+    @IBOutlet weak var imagePickerView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,23 @@ class ViewController: UIViewController {
         button.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
+    @IBAction func pickAnImage(sender: UIBarButtonItem) {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        self.presentViewController(controller, animated: true, completion:nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        print("User picked an image")
+        // Close the image picker
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        print("User cancelled the operation")
+    }
+    
     @IBAction func imageButtonClicked(sender: UIButton) {
         let image = UIImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -53,10 +73,6 @@ class ViewController: UIViewController {
         controller.addAction(okAction)
         controller.addAction(cancelAction)
         self.presentViewController(controller, animated: true, completion: nil)
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func incrementCount() {
