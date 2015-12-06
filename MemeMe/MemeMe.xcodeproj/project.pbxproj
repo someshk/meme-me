@@ -14,6 +14,7 @@
 		4C4CE7801BE296B400A9F150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C4CE77E1BE296B400A9F150 /* LaunchScreen.storyboard */; };
 		4C4CE78B1BE296B400A9F150 /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CE78A1BE296B400A9F150 /* MemeMeTests.swift */; };
 		4C4CE7961BE296B400A9F150 /* MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CE7951BE296B400A9F150 /* MemeMeUITests.swift */; };
+		4CC5CD4D1C14F19A005BB344 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5CD4C1C14F19A005BB344 /* Meme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4C4CE7911BE296B400A9F150 /* MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4CE7951BE296B400A9F150 /* MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeUITests.swift; sourceTree = "<group>"; };
 		4C4CE7971BE296B400A9F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CC5CD4C1C14F19A005BB344 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				4C4CE77C1BE296B400A9F150 /* Assets.xcassets */,
 				4C4CE77E1BE296B400A9F150 /* LaunchScreen.storyboard */,
 				4C4CE7811BE296B400A9F150 /* Info.plist */,
+				4CC5CD4C1C14F19A005BB344 /* Meme.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC5CD4D1C14F19A005BB344 /* Meme.swift in Sources */,
 				4C4CE7781BE296B400A9F150 /* ViewController.swift in Sources */,
 				4C4CE7761BE296B400A9F150 /* AppDelegate.swift in Sources */,
 			);
@@ -482,6 +486,7 @@
 				4C4CE79C1BE296B400A9F150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C4CE79D1BE296B400A9F150 /* Build configuration list for PBXNativeTarget "MemeMeTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +495,7 @@
 				4C4CE79F1BE296B400A9F150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C4CE7A01BE296B400A9F150 /* Build configuration list for PBXNativeTarget "MemeMeUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +504,7 @@
 				4C4CE7A21BE296B400A9F150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

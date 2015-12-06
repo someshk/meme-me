@@ -14,6 +14,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     var count = 0
     var label:UILabel!
     
+    var activityViewController:UIActivityViewController!
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -28,12 +30,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         NSStrokeWidthAttributeName : 2
     ]
     
-    func shareMeme(Sender: UIBarButtonItem) {
-        print("shareMeme")
+    func handleShare(Sender: UIBarButtonItem) {
+        print("handleShare")
+        
+        // Create the Meme and save it
+        let meme = Meme(topText: topTextLabel.text!, bottomText: bottomTextLabel.text!, image: imagePickerView.image!, memedImage: generateMemeImage())
+        
+        print("Meme Top Text: " + meme.topText)
+        print("Meme Bottom Text: " + meme.bottomText)
+        
+        activityViewController = UIActivityViewController(
+            activityItems: [NSString(string: "Sharing Meme")],
+            applicationActivities: nil)
+        
+        presentViewController(activityViewController,
+            animated: true,
+            completion: {
+        })
+    
     }
     
-    func cancelMeme(Sender: UIBarButtonItem) {
-        print("cancelMeme")
+    func handleCancel(Sender: UIBarButtonItem) {
+        print("handleCancel")
     }
     
     override func viewDidLoad() {
@@ -54,10 +72,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         
         // Setup the share button
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-                            barButtonSystemItem: .Action, target: self, action: "shareMeme:")
+                            barButtonSystemItem: .Action, target: self, action: "handleShare:")
         
         // Set up the cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelMeme:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -126,6 +145,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func generateMemeImage() -> UIImage
+    {
+        // Hide the Navigation and toolbar
+       self.navigationController?.navigationBarHidden = true
+       self.navigationController?.setToolbarHidden(true, animated: false)
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        
+        // Show navigation and tool bar
+        // Hide the Navigation and toolbar
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        
+        return memedImage
     }
 }
 
