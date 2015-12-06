@@ -18,9 +18,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var topTextLabel: UITextField!
+    @IBOutlet weak var bottomTextLabel: UITextField!
+    
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.redColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : 2
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Set the text Style Attributes for the text labels
+        topTextLabel.defaultTextAttributes = memeTextAttributes
+        topTextLabel.textAlignment = NSTextAlignment.Center
+        
+        bottomTextLabel.defaultTextAttributes = memeTextAttributes
+        bottomTextLabel.textAlignment = NSTextAlignment.Center
         
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     }
