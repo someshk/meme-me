@@ -18,23 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-9X-g60">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <animations/>
-                                <items>
-                                    <barButtonItem title="Camera" id="Tzf-pm-vbH">
-                                        <connections>
-                                            <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" id="HE6-Gy-JJM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Album" id="QVN-9u-6ac">
-                                        <connections>
-                                            <action selector="albumButtonClicked:" destination="BYZ-38-t0r" id="Yiv-t2-u9d"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5oa-Ab-ObP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5oa-Ab-ObP">
                                 <rect key="frame" x="0.0" y="72" width="600" height="478"/>
                                 <animations/>
                             </imageView>
@@ -55,19 +39,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5oa-Ab-ObP" firstAttribute="top" secondItem="9aJ-d4-upd" secondAttribute="bottom" constant="-65" id="0JU-hc-fdK"/>
-                            <constraint firstItem="Dds-9X-g60" firstAttribute="top" secondItem="5oa-Ab-ObP" secondAttribute="bottom" id="4j0-0H-x2E"/>
+                            <constraint firstItem="5oa-Ab-ObP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="33u-uW-Swl"/>
+                            <constraint firstItem="5oa-Ab-ObP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="5C1-mg-PDh"/>
+                            <constraint firstItem="5oa-Ab-ObP" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="70L-7p-J3b"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="BCZ-ms-rwS"/>
                             <constraint firstItem="5oa-Ab-ObP" firstAttribute="top" secondItem="9aJ-d4-upd" secondAttribute="bottom" constant="500" id="Jis-hT-b1L"/>
                             <constraint firstItem="5oa-Ab-ObP" firstAttribute="top" secondItem="9aJ-d4-upd" secondAttribute="bottom" constant="-65" id="NVF-Bs-fny"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="leading" secondItem="5oa-Ab-ObP" secondAttribute="trailing" constant="-561" id="PSj-qw-Z0e"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VtC-EI-y7w"/>
                             <constraint firstItem="5oa-Ab-ObP" firstAttribute="top" secondItem="9aJ-d4-upd" secondAttribute="bottom" constant="480" id="XiV-bp-OTr"/>
-                            <constraint firstItem="Dds-9X-g60" firstAttribute="top" secondItem="5oa-Ab-ObP" secondAttribute="bottom" constant="6" id="YMX-gF-zF1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9aJ-d4-upd" secondAttribute="trailing" constant="-20" id="ZMJ-ek-8Cq"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="b59-wN-nXJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Dds-9X-g60" secondAttribute="bottom" id="c2O-dE-eFb"/>
-                            <constraint firstItem="Dds-9X-g60" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cDc-2C-z3n"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Dds-9X-g60" secondAttribute="trailing" constant="-20" id="cvo-NR-wiE"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5oa-Ab-ObP" secondAttribute="bottom" constant="6" id="jBa-u9-taz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="e6H-8L-s4p" secondAttribute="bottom" constant="20" id="jXq-B4-Tzv"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="centerX" secondItem="5oa-Ab-ObP" secondAttribute="centerX" id="lQh-8T-aXM"/>
                             <constraint firstItem="9aJ-d4-upd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="mJ8-MY-EGW"/>
                             <constraint firstItem="e6H-8L-s4p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="oo7-LH-0lO"/>
@@ -86,15 +70,26 @@
                                 <exclude reference="ZMJ-ek-8Cq"/>
                                 <exclude reference="lQh-8T-aXM"/>
                                 <exclude reference="mJ8-MY-EGW"/>
-                                <exclude reference="YMX-gF-zF1"/>
+                                <exclude reference="qNU-ff-D0T"/>
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Camera" id="I9V-G4-nzO">
+                            <connections>
+                                <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" id="2u4-PE-BZu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Album" id="ujD-20-kK3">
+                            <connections>
+                                <action selector="albumButtonClicked:" destination="BYZ-38-t0r" id="LsI-9O-ZcX"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="hBA-af-gMG"/>
                     <connections>
-                        <outlet property="albumButton" destination="QVN-9u-6ac" id="ZhQ-wd-IYP"/>
                         <outlet property="bottomTextLabel" destination="e6H-8L-s4p" id="Uey-UQ-bGi"/>
-                        <outlet property="cameraButton" destination="Tzf-pm-vbH" id="eHS-OZ-pQ6"/>
+                        <outlet property="cameraButton" destination="I9V-G4-nzO" id="vEa-cr-FIZ"/>
                         <outlet property="imagePickerView" destination="5oa-Ab-ObP" id="scn-OQ-Kw1"/>
                         <outlet property="topTextLabel" destination="9aJ-d4-upd" id="5mg-G8-hQC"/>
                     </connections>
@@ -106,7 +101,7 @@
         <!--Navigation Controller-->
         <scene sceneID="VdC-iF-0eX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hEx-AF-IYP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="hEx-AF-IYP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YiX-7U-Ebl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -114,6 +109,11 @@
                         <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2tf-GZ-McX">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rJZ-3N-5qO"/>
                     </connections>

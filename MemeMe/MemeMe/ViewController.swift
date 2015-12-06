@@ -17,9 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     var activityViewController:UIActivityViewController!
     
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var albumButton: UIBarButtonItem!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextLabel: UITextField!
     @IBOutlet weak var bottomTextLabel: UITextField!
     
@@ -96,7 +95,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func cameraButtonClicked(sender: UIBarButtonItem) {
         let controller = UIImagePickerController()
-//        controller.sourceType = UIImagePickerControllerSourceType.Camera
+        controller.sourceType = UIImagePickerControllerSourceType.Camera
         controller.delegate = self
         self.presentViewController(controller, animated: true, completion:nil)
     }
@@ -161,9 +160,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         
         
         // Show navigation and tool bar
-        // Hide the Navigation and toolbar
         self.navigationController?.navigationBarHidden = false
-        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.setToolbarHidden(false, animated: false)
         
         return memedImage
     }
