@@ -22,8 +22,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var bottomTextLabel: UITextField!
     
     let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.redColor(),
+        NSStrokeColorAttributeName : UIColor.grayColor(),
+//        NSForegroundColorAttributeName : UIColor.redColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : 2
     ]
