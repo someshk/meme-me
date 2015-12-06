@@ -28,9 +28,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         NSStrokeWidthAttributeName : 2
     ]
     
+    func shareMeme(Sender: UIBarButtonItem) {
+        print("shareMeme")
+    }
+    
+    func cancelMeme(Sender: UIBarButtonItem) {
+        print("cancelMeme")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//        navigationItem.setRightBarButtonItem(cancelButton, animated: true)
         
         // Set the text Style Attributes for the text labels
         topTextLabel.defaultTextAttributes = memeTextAttributes
@@ -40,6 +49,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         bottomTextLabel.textAlignment = NSTextAlignment.Center
         
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        navigationItem.title = "Meme"
+        
+        // Setup the share button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+                            barButtonSystemItem: .Action, target: self, action: "shareMeme:")
+        
+        // Set up the cancel button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelMeme:")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,7 +73,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         // Unsubscribe keyboard notifications
         self.unsubscribeFromKeyboardNotifications()
     }
-    
+
     
     @IBAction func cameraButtonClicked(sender: UIBarButtonItem) {
         let controller = UIImagePickerController()
