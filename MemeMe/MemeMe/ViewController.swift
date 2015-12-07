@@ -57,8 +57,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         // Subscribe to keyboard notifications, to allow the view to raise when necessary
         self.subscribeToKeyboardNotifications()
         
-        // Enable / Disable Camera Button
+        // Enable / Disable Camera Button depending on if device supports camera or not
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        // Disable Share button
+        navigationItem.leftBarButtonItem?.enabled = false;
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -131,6 +134,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func handleCancel(Sender: UIBarButtonItem) {
         print("handleCancel")
+        
+        // Remove the selected image from the Image View
+        self.imagePickerView.image = nil
+        
+        // Disable the Meme Share button
+        self.navigationItem.leftBarButtonItem?.enabled = false
     }
 
     
@@ -149,6 +158,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         dismissViewControllerAnimated(true) { () -> Void in
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 self.imagePickerView.image = image
+                
+                // Enable the Meme Share button
+                self.navigationItem.leftBarButtonItem?.enabled = true
             }
         }
     }
