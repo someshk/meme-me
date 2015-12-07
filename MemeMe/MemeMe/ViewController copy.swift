@@ -19,8 +19,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     var revertTextLabel: String!
     var activeField: UITextField!
     
-    var keyboardHeight: CGFloat = 0
-    
     var activityViewController:UIActivityViewController!
     
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -29,6 +27,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
+    var keyboardHeight: CGFloat = 0
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.grayColor(),
@@ -166,7 +166,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         presentViewController(imagePicker, animated: true, completion:nil)
     }
     
-    
     func keyboardDidAppear(notification: NSNotification) {
         print("keyboardDidAppear")
         let frame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
@@ -175,13 +174,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         aRect.size.height -= frame.size.height
         if (!CGRectContainsPoint(aRect, activeField!.frame.origin))
         {
-            // Check whether this is first time we are adjusting the view height - this is a workaround for 
-            // the multiple UIKeyboardDidShowNotification notifications we are receiving - Need to root cause
-            if self.keyboardHeight==0 {
-                UIView.animateWithDuration(0.5) {
-                    self.view.frame.origin.y -= frame.size.height
-                    self.keyboardHeight = frame.size.height
-                }
+            UIView.animateWithDuration(0.5) {
+                self.view.frame.origin.y -= frame.size.height
+                self.keyboardHeight = frame.size.height
             }
         } else {
             self.keyboardHeight = 0
@@ -213,6 +208,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
+    
     func generateMemeImage() -> UIImage
     {
         // Hide the Navigation and toolbar
@@ -237,20 +233,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         print("textFieldDidBeginEditing")
         activeField = textField
         if textField.text!.compare(topTextDefault) == NSComparisonResult.OrderedSame ||
-            textField.text!.compare(bottomTextDefault) == NSComparisonResult.OrderedSame {
-                revertTextLabel = textField.text;
-                textField.text = "";
+        textField.text!.compare(bottomTextDefault) == NSComparisonResult.OrderedSame {
+            revertTextLabel = textField.text;
+            textField.text = "";
         } else {
             
         }
-        
+
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         // Add code to dismiss the keyboard
         activeField = nil
         if textField.text?.isEmpty == false {
-            print(textField.text)
+             print(textField.text)
         } else {
             // Text field is empty - need to see which text field it was
             textField.text = revertTextLabel;
