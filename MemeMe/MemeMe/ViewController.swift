@@ -39,13 +39,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         // Set the text Style Attributes for the text labels
-        self.topTextField.defaultTextAttributes = memeTextAttributes
-        self.topTextField.textAlignment = NSTextAlignment.Center
-        self.topTextField.delegate = self
+        topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = NSTextAlignment.Center
+        topTextField.delegate = self
         
-        self.bottomTextField.defaultTextAttributes = memeTextAttributes
-        self.bottomTextField.textAlignment = NSTextAlignment.Center
-        self.bottomTextField.delegate = self
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = NSTextAlignment.Center
+        bottomTextField.delegate = self
         
         navigationItem.title = "Meme"
         
@@ -62,10 +62,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewWillAppear(animated)
         
         // Subscribe to keyboard notifications, to allow the view to raise when necessary
-         self.subscribeToKeyboardNotifications()
+         subscribeToKeyboardNotifications()
         
         // Enable / Disable Camera Button depending on if device supports camera or not
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         // Disable Share button
         navigationItem.leftBarButtonItem?.enabled = false;
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewWillAppear(animated)
         
         // Unsubscribe keyboard notifications
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
     func handleShare(Sender: UIBarButtonItem) {
@@ -110,7 +110,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         returnedItems: [AnyObject]?,
         activityError: NSError?){
             print("activityCompletionHandler")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
             
     }
     
@@ -118,14 +118,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         print("handleCancel")
         
         // Remove the selected image from the Image View
-        self.imagePickerView.image = nil
+        imagePickerView.image = nil
         
         // Disable the Meme Share button
-        self.navigationItem.leftBarButtonItem?.enabled = false
+        navigationItem.leftBarButtonItem?.enabled = false
         
         // Reset the top and bottom text fields to default
-        self.topTextField.text = topTextDefault
-        self.bottomTextField.text = bottomTextDefault
+        topTextField.text = topTextDefault
+        bottomTextField.text = bottomTextDefault
     }
 
     
@@ -133,7 +133,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         let controller = UIImagePickerController()
         controller.sourceType = UIImagePickerControllerSourceType.Camera
         controller.delegate = self
-        self.presentViewController(controller, animated: true, completion:nil)
+        presentViewController(controller, animated: true, completion:nil)
     }
     
     func imagePickerController(picker: UIImagePickerController,
@@ -153,19 +153,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("imagePickerControllerDidCancel: Cancelled operation")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func albumButtonClicked(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePicker.delegate = self
-        self.presentViewController(imagePicker, animated: true, completion:nil)
+        presentViewController(imagePicker, animated: true, completion:nil)
     }
     
     
     func keyBoardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     
@@ -188,19 +188,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     func generateMemeImage() -> UIImage
     {
         // Hide the Navigation and toolbar
-       self.navigationController?.navigationBarHidden = true
-       self.navigationController?.setToolbarHidden(true, animated: false)
+       navigationController?.navigationBarHidden = true
+       navigationController?.setToolbarHidden(true, animated: false)
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         
         // Show navigation and tool bar
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.setToolbarHidden(false, animated: false)
+        navigationController?.navigationBarHidden = false
+        navigationController?.setToolbarHidden(false, animated: false)
         
         return memedImage
     }

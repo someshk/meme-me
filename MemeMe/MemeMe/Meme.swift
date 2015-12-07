@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class Meme {
+public struct Meme {
     
     public var topText: String = ""
     public var bottomText: String = ""
