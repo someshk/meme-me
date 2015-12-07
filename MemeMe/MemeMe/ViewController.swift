@@ -24,7 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.grayColor(),
-//        NSForegroundColorAttributeName : UIColor.redColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : 2
     ]
@@ -42,11 +42,46 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
             activityItems: [NSString(string: "Sharing Meme")],
             applicationActivities: nil)
         
+        activityViewController.completionWithItemsHandler = activityCompletionHandler;
         presentViewController(activityViewController,
             animated: true,
             completion: {
         })
     
+    }
+    
+    func activityCompletionHandler(activityType: String?,
+        completed: Bool,
+        returnedItems: [AnyObject]?,
+        activityError: NSError?){
+            print("activityCompletionHandler")
+            self.dismissViewControllerAnimated(true, completion: nil)
+            if completed && activityError == nil {
+                
+                let item = returnedItems?[0] as! NSExtensionItem
+                
+//                if let attachments = item.attachments{
+//                    
+//                    let attachment = attachments[0] as! NSItemProvider
+//                    
+//                    if attachment.hasItemConformingToTypeIdentifier(type){
+//                        attachment.loadItemForTypeIdentifier(type, options: nil,
+//                            completionHandler:{
+//                                (item: NSSecureCoding?, error: NSError?) in
+//                                
+//                                if let error = error{
+//                                    self.textField.text = "\(error)"
+//                                } else if let value = item as? String{
+//                                    self.textField.text = value
+//                                }
+//                                
+//                        })
+//                    }
+                
+//                }
+                
+            }
+            
     }
     
     func handleCancel(Sender: UIBarButtonItem) {
@@ -55,15 +90,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        navigationItem.setRightBarButtonItem(cancelButton, animated: true)
         
         // Set the text Style Attributes for the text labels
-        topTextLabel.defaultTextAttributes = memeTextAttributes
-        topTextLabel.textAlignment = NSTextAlignment.Center
+        self.topTextLabel.defaultTextAttributes = memeTextAttributes
+        self.topTextLabel.textAlignment = NSTextAlignment.Center
         
-        bottomTextLabel.defaultTextAttributes = memeTextAttributes
-        bottomTextLabel.textAlignment = NSTextAlignment.Center
+        self.bottomTextLabel.defaultTextAttributes = memeTextAttributes
+        self.bottomTextLabel.textAlignment = NSTextAlignment.Center
         
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
@@ -166,4 +199,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         return memedImage
     }
 }
-
