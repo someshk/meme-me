@@ -38,10 +38,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         print("Meme Top Text: " + meme.topText)
         print("Meme Bottom Text: " + meme.bottomText)
         
+        let shareMeme:Array = [meme.memedImage]
+        
         activityViewController = UIActivityViewController(
-            activityItems: [NSString(string: "Sharing Meme")],
+            activityItems: shareMeme,
             applicationActivities: nil)
         
+        /// Excludes following share options
+        activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
+        
+        // Set Completion handler
         activityViewController.completionWithItemsHandler = activityCompletionHandler;
         presentViewController(activityViewController,
             animated: true,
