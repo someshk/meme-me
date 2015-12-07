@@ -97,7 +97,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
         
         // Set Completion handler
-//        activityViewController.completionWithItemsHandler = activityCompletionHandler;
+        activityViewController.completionWithItemsHandler = activityCompletionHandler;
         presentViewController(activityViewController,
             animated: true,
             completion: {
@@ -105,39 +105,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-//    func activityCompletionHandler(activityType: String?,
-//        completed: Bool,
-//        returnedItems: [AnyObject]?,
-//        activityError: NSError?){
-//            print("activityCompletionHandler")
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//            if completed && activityError == nil {
-//                
-//                let item = returnedItems?[0] as! NSExtensionItem
-//                
-//                //                if let attachments = item.attachments{
-//                //
-//                //                    let attachment = attachments[0] as! NSItemProvider
-//                //
-//                //                    if attachment.hasItemConformingToTypeIdentifier(type){
-//                //                        attachment.loadItemForTypeIdentifier(type, options: nil,
-//                //                            completionHandler:{
-//                //                                (item: NSSecureCoding?, error: NSError?) in
-//                //
-//                //                                if let error = error{
-//                //                                    self.textField.text = "\(error)"
-//                //                                } else if let value = item as? String{
-//                //                                    self.textField.text = value
-//                //                                }
-//                //
-//                //                        })
-//                //                    }
-//                
-//                //                }
-//                
-//            }
-//            
-//    }
+    func activityCompletionHandler(activityType: String?,
+        completed: Bool,
+        returnedItems: [AnyObject]?,
+        activityError: NSError?){
+            print("activityCompletionHandler")
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+    }
     
     func handleCancel(Sender: UIBarButtonItem) {
         print("handleCancel")
