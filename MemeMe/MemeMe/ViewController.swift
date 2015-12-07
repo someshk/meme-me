@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         NSStrokeColorAttributeName : UIColor.grayColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : 2
+        NSStrokeWidthAttributeName : -2.0
     ]
 
     
@@ -62,7 +62,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewWillAppear(animated)
         
         // Subscribe to keyboard notifications, to allow the view to raise when necessary
-        self.subscribeToKeyboardNotifications()
+         self.subscribeToKeyboardNotifications()
         
         // Enable / Disable Camera Button depending on if device supports camera or not
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -97,7 +97,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
         
         // Set Completion handler
-        activityViewController.completionWithItemsHandler = activityCompletionHandler;
+//        activityViewController.completionWithItemsHandler = activityCompletionHandler;
         presentViewController(activityViewController,
             animated: true,
             completion: {
@@ -105,39 +105,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    func activityCompletionHandler(activityType: String?,
-        completed: Bool,
-        returnedItems: [AnyObject]?,
-        activityError: NSError?){
-            print("activityCompletionHandler")
-            self.dismissViewControllerAnimated(true, completion: nil)
-            if completed && activityError == nil {
-                
-                let item = returnedItems?[0] as! NSExtensionItem
-                
-                //                if let attachments = item.attachments{
-                //
-                //                    let attachment = attachments[0] as! NSItemProvider
-                //
-                //                    if attachment.hasItemConformingToTypeIdentifier(type){
-                //                        attachment.loadItemForTypeIdentifier(type, options: nil,
-                //                            completionHandler:{
-                //                                (item: NSSecureCoding?, error: NSError?) in
-                //
-                //                                if let error = error{
-                //                                    self.textField.text = "\(error)"
-                //                                } else if let value = item as? String{
-                //                                    self.textField.text = value
-                //                                }
-                //
-                //                        })
-                //                    }
-                
-                //                }
-                
-            }
-            
-    }
+//    func activityCompletionHandler(activityType: String?,
+//        completed: Bool,
+//        returnedItems: [AnyObject]?,
+//        activityError: NSError?){
+//            print("activityCompletionHandler")
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//            if completed && activityError == nil {
+//                
+//                let item = returnedItems?[0] as! NSExtensionItem
+//                
+//                //                if let attachments = item.attachments{
+//                //
+//                //                    let attachment = attachments[0] as! NSItemProvider
+//                //
+//                //                    if attachment.hasItemConformingToTypeIdentifier(type){
+//                //                        attachment.loadItemForTypeIdentifier(type, options: nil,
+//                //                            completionHandler:{
+//                //                                (item: NSSecureCoding?, error: NSError?) in
+//                //
+//                //                                if let error = error{
+//                //                                    self.textField.text = "\(error)"
+//                //                                } else if let value = item as? String{
+//                //                                    self.textField.text = value
+//                //                                }
+//                //
+//                //                        })
+//                //                    }
+//                
+//                //                }
+//                
+//            }
+//            
+//    }
     
     func handleCancel(Sender: UIBarButtonItem) {
         print("handleCancel")
@@ -241,7 +241,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         }
 
     }
-    
     
     func textFieldDidEndEditing(textField: UITextField) {
         // Add code to dismiss the keyboard

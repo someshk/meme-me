@@ -78,21 +78,21 @@
                         </variation>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Camera" id="I9V-G4-nzO">
+                        <barButtonItem title="Camera" width="120" style="plain" id="hbi-Ng-eW4">
                             <connections>
-                                <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" id="2u4-PE-BZu"/>
+                                <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" id="Uzz-eA-kmW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Album" id="ujD-20-kK3">
+                        <barButtonItem title="Album" width="120" style="plain" id="Hfg-nB-ZrQ">
                             <connections>
-                                <action selector="albumButtonClicked:" destination="BYZ-38-t0r" id="LsI-9O-ZcX"/>
+                                <action selector="albumButtonClicked:" destination="BYZ-38-t0r" id="g2d-l2-0uy"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="hBA-af-gMG"/>
                     <connections>
                         <outlet property="bottomTextField" destination="e6H-8L-s4p" id="LpP-MT-9Yo"/>
-                        <outlet property="cameraButton" destination="I9V-G4-nzO" id="vEa-cr-FIZ"/>
+                        <outlet property="cameraButton" destination="hbi-Ng-eW4" id="5hs-Re-OgO"/>
                         <outlet property="imagePickerView" destination="5oa-Ab-ObP" id="scn-OQ-Kw1"/>
                         <outlet property="topTextField" destination="9aJ-d4-upd" id="r46-8O-pgd"/>
                     </connections>
