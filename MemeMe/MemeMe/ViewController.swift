@@ -175,13 +175,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         aRect.size.height -= frame.size.height
         if (!CGRectContainsPoint(aRect, activeField!.frame.origin))
         {
-            // Check whether this is first time we are adjusting the view height - this is a workaround for 
-            // the multiple UIKeyboardDidShowNotification notifications we are receiving - Need to root cause
-            if self.keyboardHeight==0 {
-                UIView.animateWithDuration(0.5) {
-                    self.view.frame.origin.y -= frame.size.height
-                    self.keyboardHeight = frame.size.height
-                }
+            UIView.animateWithDuration(0.5) {
+                self.view.frame.origin.y -= frame.size.height
+                self.keyboardHeight = frame.size.height
             }
         } else {
             self.keyboardHeight = 0
@@ -210,7 +206,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func unsubscribeFromKeyboardNotifications() {
         print("unsubscribeFromKeyboardNotifications")
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     func generateMemeImage() -> UIImage
