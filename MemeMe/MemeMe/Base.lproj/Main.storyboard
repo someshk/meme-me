@@ -33,6 +33,9 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="qZ7-lB-Bhw"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <animations/>
@@ -88,10 +91,10 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="hBA-af-gMG"/>
                     <connections>
-                        <outlet property="bottomTextLabel" destination="e6H-8L-s4p" id="Uey-UQ-bGi"/>
+                        <outlet property="bottomTextField" destination="e6H-8L-s4p" id="LpP-MT-9Yo"/>
                         <outlet property="cameraButton" destination="I9V-G4-nzO" id="vEa-cr-FIZ"/>
                         <outlet property="imagePickerView" destination="5oa-Ab-ObP" id="scn-OQ-Kw1"/>
-                        <outlet property="topTextLabel" destination="9aJ-d4-upd" id="5mg-G8-hQC"/>
+                        <outlet property="topTextField" destination="9aJ-d4-upd" id="r46-8O-pgd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -9,18 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
-                UINavigationControllerDelegate {
+                UINavigationControllerDelegate, UITextFieldDelegate {
 
     var count = 0
     var label:UILabel!
+    
+    let topTextDefault: String = "Top"
+    let bottomTextDefault: String = "Bottom"
+    var revertTextLabel: String!
     
     var activityViewController:UIActivityViewController!
     
     @IBOutlet weak var imagePickerView: UIImageView!
     
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var topTextLabel: UITextField!
-    @IBOutlet weak var bottomTextLabel: UITextField!
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.grayColor(),
@@ -34,11 +39,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         // Set the text Style Attributes for the text labels
-        self.topTextLabel.defaultTextAttributes = memeTextAttributes
-        self.topTextLabel.textAlignment = NSTextAlignment.Center
+        self.topTextField.defaultTextAttributes = memeTextAttributes
+        self.topTextField.textAlignment = NSTextAlignment.Center
+        self.topTextField.delegate = self
         
-        self.bottomTextLabel.defaultTextAttributes = memeTextAttributes
-        self.bottomTextLabel.textAlignment = NSTextAlignment.Center
+        self.bottomTextField.defaultTextAttributes = memeTextAttributes
+        self.bottomTextField.textAlignment = NSTextAlignment.Center
+        self.bottomTextField.delegate = self
         
         navigationItem.title = "Meme"
         
@@ -75,7 +82,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         print("handleShare")
         
         // Create the Meme and save it
-        let meme = Meme(topText: topTextLabel.text!, bottomText: bottomTextLabel.text!, image: imagePickerView.image!, memedImage: generateMemeImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: generateMemeImage())
         
         print("Meme Top Text: " + meme.topText)
         print("Meme Bottom Text: " + meme.bottomText)
@@ -140,6 +147,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         
         // Disable the Meme Share button
         self.navigationItem.leftBarButtonItem?.enabled = false
+        
+        // Reset the top and bottom text fields to default
+        self.topTextField.text = topTextDefault
+        self.bottomTextField.text = bottomTextDefault
     }
 
     
@@ -217,5 +228,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         self.navigationController?.setToolbarHidden(false, animated: false)
         
         return memedImage
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("textFieldDidBeginEditing")
+        if textField.text!.compare(topTextDefault) == NSComparisonResult.OrderedSame ||
+        textField.text!.compare(bottomTextDefault) == NSComparisonResult.OrderedSame {
+            revertTextLabel = textField.text;
+            textField.text = "";
+        } else {
+            
+        }
+
+    }
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        // Add code to dismiss the keyboard
+        
+        if textField.text?.isEmpty == false {
+             print(textField.text)
+        } else {
+            // Text field is empty - need to see which text field it was
+            textField.text = revertTextLabel;
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
