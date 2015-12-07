@@ -28,6 +28,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : 2
     ]
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set the text Style Attributes for the text labels
+        self.topTextLabel.defaultTextAttributes = memeTextAttributes
+        self.topTextLabel.textAlignment = NSTextAlignment.Center
+        
+        self.bottomTextLabel.defaultTextAttributes = memeTextAttributes
+        self.bottomTextLabel.textAlignment = NSTextAlignment.Center
+        
+        navigationItem.title = "Meme"
+        
+        // Setup the share button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+                            barButtonSystemItem: .Action, target: self, action: "handleShare:")
+        
+        // Set up the cancel button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
+    
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Subscribe to keyboard notifications, to allow the view to raise when necessary
+        self.subscribeToKeyboardNotifications()
+        
+        // Enable / Disable Camera Button
+        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Unsubscribe keyboard notifications
+        self.unsubscribeFromKeyboardNotifications()
+    }
     
     func handleShare(Sender: UIBarButtonItem) {
         print("handleShare")
@@ -53,7 +92,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
             animated: true,
             completion: {
         })
-    
+        
     }
     
     func activityCompletionHandler(activityType: String?,
@@ -66,25 +105,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 let item = returnedItems?[0] as! NSExtensionItem
                 
-//                if let attachments = item.attachments{
-//                    
-//                    let attachment = attachments[0] as! NSItemProvider
-//                    
-//                    if attachment.hasItemConformingToTypeIdentifier(type){
-//                        attachment.loadItemForTypeIdentifier(type, options: nil,
-//                            completionHandler:{
-//                                (item: NSSecureCoding?, error: NSError?) in
-//                                
-//                                if let error = error{
-//                                    self.textField.text = "\(error)"
-//                                } else if let value = item as? String{
-//                                    self.textField.text = value
-//                                }
-//                                
-//                        })
-//                    }
+                //                if let attachments = item.attachments{
+                //
+                //                    let attachment = attachments[0] as! NSItemProvider
+                //
+                //                    if attachment.hasItemConformingToTypeIdentifier(type){
+                //                        attachment.loadItemForTypeIdentifier(type, options: nil,
+                //                            completionHandler:{
+                //                                (item: NSSecureCoding?, error: NSError?) in
+                //
+                //                                if let error = error{
+                //                                    self.textField.text = "\(error)"
+                //                                } else if let value = item as? String{
+                //                                    self.textField.text = value
+                //                                }
+                //
+                //                        })
+                //                    }
                 
-//                }
+                //                }
                 
             }
             
@@ -92,43 +131,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func handleCancel(Sender: UIBarButtonItem) {
         print("handleCancel")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set the text Style Attributes for the text labels
-        self.topTextLabel.defaultTextAttributes = memeTextAttributes
-        self.topTextLabel.textAlignment = NSTextAlignment.Center
-        
-        self.bottomTextLabel.defaultTextAttributes = memeTextAttributes
-        self.bottomTextLabel.textAlignment = NSTextAlignment.Center
-        
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        
-        navigationItem.title = "Meme"
-        
-        // Setup the share button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-                            barButtonSystemItem: .Action, target: self, action: "handleShare:")
-        
-        // Set up the cancel button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
-    
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Subscribe to keyboard notifications, to allow the view to raise when necessary
-        self.subscribeToKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Unsubscribe keyboard notifications
-        self.unsubscribeFromKeyboardNotifications()
     }
 
     
