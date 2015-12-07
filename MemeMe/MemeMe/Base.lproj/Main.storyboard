@@ -78,6 +78,7 @@
                         </variation>
                     </view>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="WdA-Ei-nke"/>
                         <barButtonItem title="Camera" width="120" style="plain" id="hbi-Ng-eW4">
                             <connections>
                                 <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" id="Uzz-eA-kmW"/>
@@ -88,6 +89,7 @@
                                 <action selector="albumButtonClicked:" destination="BYZ-38-t0r" id="g2d-l2-0uy"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="dRz-Xy-MXR"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="hBA-af-gMG"/>
                     <connections>
